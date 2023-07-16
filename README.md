@@ -8,6 +8,8 @@ As far as the layers from the kernel down to the bare-metal registers are concer
 
 As an end goal, I'm shooting for a number of things:
  - Support for task scheduling and process forking
+ - Process isolation, support for process-level dynamic memory allocation
+ - Some level of peripheral multiplexing (i.e. SysTick based timers, maybe certain GPIO pins or communication peripherals)
  - A simple file system
  - Full use of MSP (Main stack pointer) and PSP (Process Stack Pointer) separation between OS/IRQ handler code and process code
  - A simple shell to launch user space processes
