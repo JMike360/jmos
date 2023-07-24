@@ -7,12 +7,12 @@ SIZE=arm-none-eabi-size
 PROJECT=jmos
 
 ## General compiler flags ##
-CFLAGS = -Wall -Werror -std=c99 -g -Tjmos-stm32-link.ld
+CFLAGS = -Wall -Werror -std=c99 -Tjmos-stm32-link.ld
 CFLAGS += -ffunction-sections -fdata-sections 
 CFLAGS += -I.
 
 ## STM32 required flags ##
-CFLAGS += -mlittle-endian -mcpu=cortex-m0 -march=armv6-m -mthumb -mthumb-interwork
+CFLAGS += -mlittle-endian -mcpu=cortex-m0 -march=armv6-m -mthumb
 #CFLAGS += --specs=nosys.specs #Some issue with newlib includes related to _exit() causes the compiler to throw errors without this. I suspect the stm32 CMSIS package has includes to replace certain standard C implementations, but for now we will use this semihosting config option.
 
 ## Optional configuration flags ##
@@ -29,7 +29,7 @@ OBJS = $(SRCS:.c=.o)
 
 .PHONY: project
 
-all: project
+all: asm project
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $^
