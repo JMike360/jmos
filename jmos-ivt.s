@@ -3,6 +3,10 @@
 .cpu cortex-m0
 .thumb
 
+/* Cortex-M0 processors expect this table to always exist at addr 0x0
+ * Each row points to the entry point of the corresponding interrupt's handler
+ * Row 0 is special, and points to the initial stack pointer value
+*/
 .section .isr_vector,"a",%progbits
 .type cortexm0_vectortable, %object
 .size cortexm0_vectortable, .-cortexm0_vectortable
@@ -58,6 +62,9 @@ cortexm0_vectortable:
     .word 0
     .word 0 /*BootRam*/
 
+/* Stop compiler from complaining about undefined references
+ * while also allowing any function to override these labels
+ */
 .weak Reset_ISR
 .weak NMI_ISR
 .weak HardFault_ISR
