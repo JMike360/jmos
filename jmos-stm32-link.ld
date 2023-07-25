@@ -29,9 +29,10 @@ SECTIONS
             *(.rodata*)
             . = ALIGN(4);
             _etext = .;
+            _ssdata = _etext;
         } > FLASH
 
-        .data : AT (_etext)
+        .data : AT (_ssdata)
         {
             . = ALIGN(4);
             _sdata = .;

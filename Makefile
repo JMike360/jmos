@@ -1,5 +1,6 @@
 
-SRCS= main.c
+SRCS= *.c
+SRCS += *.s
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
 OBJDUMP=arm-none-eabi-objdump
