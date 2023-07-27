@@ -8,7 +8,7 @@ SIZE=arm-none-eabi-size
 PROJECT=jmos
 
 ## General compiler flags ##
-CFLAGS = -Wall -Werror -std=c99 -Tjmos-stm32-link.ld
+CFLAGS = -Wall -Werror -std=c99 -g -Tjmos-stm32-link.ld
 CFLAGS += -ffunction-sections -fdata-sections 
 CFLAGS += -I.
 

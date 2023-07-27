@@ -28,8 +28,11 @@
 
 .section .text.Startup
 .type Reset_ISR, %function
-
+.global Reset_ISR
 Reset_ISR:
+    b Setup_Stack
+    Setup_Stack_Ret:
+
     b Setup_BSS
     Setup_BSS_Ret:
     
@@ -40,6 +43,11 @@ Reset_ISR:
     Enter_Main_Ret:
 
     b END
+
+Setup_Stack:
+    ldr r0, =_emain_stack
+    mov sp, r0
+    b Setup_Stack_Ret
 
 Setup_BSS: /* Initialize .bss SRAM region with zeros */
     ldr r0, =_sbss

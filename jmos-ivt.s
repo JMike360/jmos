@@ -9,7 +9,6 @@
 */
 .section .isr_vector,"a",%progbits
 .type cortexm0_vectortable, %object
-.size cortexm0_vectortable, .-cortexm0_vectortable
 
 cortexm0_vectortable:
     .word _emain_stack
@@ -61,42 +60,4 @@ cortexm0_vectortable:
     .word CEC_ISR
     .word 0
     .word 0 /*BootRam*/
-
-/* Stop compiler from complaining about undefined references
- * while also allowing any function to override these labels
- */
-.weak Reset_ISR
-.weak NMI_ISR
-.weak HardFault_ISR
-.weak SVC_ISR
-.weak PendSV_ISR
-.weak SysTick_ISR
-.weak WWDG_ISR
-.weak PVD_ISR
-.weak RTC_ISR
-.weak FLASH_ISR
-.weak RCC_ISR
-.weak EXTI0_1_ISR
-.weak EXTI2_3_ISR
-.weak EXTI4_15_ISR
-.weak TS_ISR
-.weak DMA1_Channel1_ISR
-.weak DMA1_Channel2_3_ISR
-.weak DMA1_Channel4_5_ISR
-.weak ADC1_COMP_ISR
-.weak TIM1_BRK_UP_TRG_COM_ISR
-.weak TIM1_CC_ISR
-.weak TIM2_ISR
-.weak TIM3_ISR
-.weak TIM6_DAC_ISR
-.weak TIM14_ISR
-.weak TIM15_ISR
-.weak TIM16_ISR
-.weak TIM17_ISR
-.weak I2C1_ISR
-.weak I2C2_ISR
-.weak SPI1_ISR
-.weak SPI2_ISR
-.weak USART1_ISR
-.weak USART2_ISR
-.weak CEC_ISR
+.size cortexm0_vectortable, .-cortexm0_vectortable
