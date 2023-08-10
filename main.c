@@ -94,7 +94,7 @@ void init_usart(){
     RCC->APB2ENR |= USART_EN;
     
     // --- Configure Baud to 9600 --- //
-    USART1->BRR = 0x1388; // baud = fclk / BRR ::: 0x1388 * 0d9600 = fclk
+    USART1->BRR = 0x1370; // baud = fclk / BRR ::: 0x1388 * 0d9600 = fclk
 
     // --- Enable basic fns in USART1 register --- //
     uint32 TX_EN = HIGH << 3;
