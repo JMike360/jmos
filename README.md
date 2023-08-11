@@ -21,7 +21,8 @@ As an end goal, I'm shooting for a number of things:
 # Getting Started
 
 Hardware: \
-STM32F0Discovery board: https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F0DISCOVERY/3045359?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Low%20ROAS%20Categories&utm_term=&utm_content=&gclid=Cj0KCQjwuNemBhCBARIsADp74QTjs18nkKRnToguwQtXIAcssSx9WCRISwkd93s4XSV0hSUSAQyqGiwaAr9YEALw_wcB
+STM32F0Discovery board: https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F0DISCOVERY/3045359?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Low%20ROAS%20Categories&utm_term=&utm_content=&gclid=Cj0KCQjwuNemBhCBARIsADp74QTjs18nkKRnToguwQtXIAcssSx9WCRISwkd93s4XSV0hSUSAQyqGiwaAr9YEALw_wcB \
+FDTI serial to USB board: https://www.amazon.com/HiLetgo-FT232RL-Converter-Adapter-Breakout/dp/B00IJXZQ7C/ref=sr_1_8?keywords=ftdi+usb+to+serial&qid=1691784056&sr=8-8
 
 Documentation: \
 Cortex M0 Programming Manual: https://www.st.com/resource/en/programming_manual/pm0215-stm32f0-series-cortexm0-programming-manual-stmicroelectronics.pdf \
