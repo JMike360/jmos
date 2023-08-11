@@ -20,13 +20,13 @@ As an end goal, I'm shooting for a number of things:
 
 # Getting Started
 
-Hardware: 
+Hardware: \
 STM32F0Discovery board: https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F0DISCOVERY/3045359?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Low%20ROAS%20Categories&utm_term=&utm_content=&gclid=Cj0KCQjwuNemBhCBARIsADp74QTjs18nkKRnToguwQtXIAcssSx9WCRISwkd93s4XSV0hSUSAQyqGiwaAr9YEALw_wcB
 
-Documentation:
+Documentation: \
 Cortex M0 Programming Manual: https://www.st.com/resource/en/programming_manual/pm0215-stm32f0-series-cortexm0-programming-manual-stmicroelectronics.pdf \
 STM32F0xx Reference Manual: https://www.st.com/resource/en/reference_manual/rm0091-stm32f0x1stm32f0x2stm32f0x8-advanced-armbased-32bit-mcus-stmicroelectronics.pdf \
-STM32F0 Discovery Datasheet: https://www.st.com/resource/en/user_manual/um1525-stm32f0discovery-discovery-kit-for-stm32-f0-microcontrollers-stmicroelectronics.pdf \
+STM32F0 Discovery Datasheet: https://www.st.com/resource/en/user_manual/um1525-stm32f0discovery-discovery-kit-for-stm32-f0-microcontrollers-stmicroelectronics.pdf 
 
 Recommended Tools (Linux env):
 - (*) st-link: https://github.com/stlink-org/stlink
@@ -38,29 +38,29 @@ Recommended Tools (Linux env):
 
 Running the code:
 1. Clone the repository `git clone https://github.com/JMike360/jmos.git`
-2. Build the binary image:
+2. Build the binary image: \
 `cd jmos` \
-`make project` \
+`make project` 
 3. Connect the STM32F0Discovery to the PC via USB
-4. Flash the jmos.bin image to ROM:
-`make flash` \
+4. Flash the jmos.bin image to ROM: \
+`make flash` 
 
-Debugging:
-st-link provides a nice utility for connecting to the in-circuit debugger and exposing it as a gdb server that you can connect to with any gdb instance running on the host PC. \
-1. Run the gdb server, connected to the SWD in-circuit debugger on the board:
+Debugging: \
+st-link provides a nice utility for connecting to the in-circuit debugger and exposing it as a gdb server that you can connect to with any gdb instance running on the host PC. 
+1. Run the gdb server, connected to the SWD in-circuit debugger on the board: \
 `tmux` (optional) \
-`st-util` \
-2. In a parallel terminal instance, run gdb and connect to the gdb server:
+`st-util` 
+2. In a parallel terminal instance, run gdb and connect to the gdb server: \
 type:`^B (ctrl-B), %` to split the terminal and create a parallel terminal instance (optional) \
 Navigate to the new window: type `^B (ctrl-B), [arrow key] or 'o'` \
 `cd jmos` \
 `gdb-multiarch` \
 In gdb: `target extended-remote localhost:4242` \
-In gdb: `file jmos.elf` to load symbol table \
-3. Run debug commands
+In gdb: `file jmos.elf` to load symbol table 
+3. Run debug commands \
 In gdb: `^C` to halt execution, `b [symbol]` to add breakpoint, `c` to continue execution, `s` to step, `info reg` to dump low registers, `info b` to show breakpoints, `delete [number]` to remove breakpoint \
-In gdb: Full list of gdb commands for stm32 devices - https://wiki.st.com/stm32mpu/wiki/GDB_commands \
-4. Typical debugging loop edit->build->flash->debug without having to re-do steps 1-3: 
+In gdb: Full list of gdb commands for stm32 devices - https://wiki.st.com/stm32mpu/wiki/GDB_commands 
+4. Typical debugging loop edit->build->flash->debug without having to re-do steps 1-3: \
 `^B, [arrow key] or 'o'` to navigate to desired pane, `^B, %` or `^B "` to create panes and `^D` to delete panes as needed \
 make file edits in vim \
 `make clean` \
@@ -69,6 +69,6 @@ make file edits in vim \
 In gdb: `^C` to stop execution \
 In gdb: `load jmos.elf` to flash binary image and reload symbol table \
 In gdb: `r`, `y` to restart the MCU \
-continue debugging as normal \
+continue debugging as normal 
 
 
