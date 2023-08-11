@@ -52,7 +52,7 @@ st-link provides a nice utility for connecting to the in-circuit debugger and ex
 `st-util` 
 2. In a parallel terminal instance, run gdb and connect to the gdb server: \
 type:`^B (ctrl-B), %` to split the terminal and create a parallel terminal instance (optional) \
-Navigate to the new window: type `^B (ctrl-B), [arrow key] or 'o'` \
+Navigate to the new pane: type `^B (ctrl-B), [arrow key] or 'o'` \
 `cd jmos` \
 `gdb-multiarch` \
 In gdb: `target extended-remote localhost:4242` \
@@ -69,6 +69,22 @@ make file edits in vim \
 In gdb: `^C` to stop execution \
 In gdb: `load jmos.elf` to flash binary image and reload symbol table \
 In gdb: `r`, `y` to restart the MCU \
-continue debugging as normal 
+continue debugging as normal
+
+USART Serial Monitoring:\
+The foundation of the Basic Input/Output System is the USART serial communication peripheral.\
+The code assumes the board and USART pins are wired like this:
+![image](https://github.com/JMike360/jmos/assets/21974835/04878658-5ed6-46ad-80ce-8e1704725fb1)
+
+To perform I/O operations with the USART, it is necessary to attach a serial monitoring program (i.e. screen or putty).\
+The USART peripheral is configured in the code to use 9600 baud, 1 start bit, 8 data bits, 1 stop bit. \
+Luckily, these are the defaults for screen as well, so we should be able to just run:\
+`sudo screen /dev/ttyUSB0`, or if you like, `sudo screen /dev/ttyUSB0 9600,cs8` (sudo is used because often USB0 is a permission-restricted device)
+
+If ttyUSB0 does not bring up the USART output, or respond to USART input, it is possible that the FTDI board is connected to a different serial tty device.\
+Resource for setting up serial monitoring: https://www.cyberciti.biz/hardware/5-linux-unix-commands-for-connecting-to-the-serial-console/ \
+There are various ways of listing the serial devices in use, and determining which one corresponds to the FTDI board. I'll post the one I used if I can find it again.
+
+
 
 
