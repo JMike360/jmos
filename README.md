@@ -54,7 +54,7 @@ st-link provides a nice utility for connecting to the in-circuit debugger and ex
 2. In a parallel terminal instance, run gdb and connect to the gdb server: \
 type:`^B (ctrl-B), %` to split the terminal and create a parallel terminal instance (optional) \
 Navigate to the new pane: type `^B (ctrl-B), [arrow key] or 'o'` \
-`cd jmos` \
+`cd jmos/build` \
 `gdb-multiarch` \
 In gdb: `target extended-remote localhost:4242` \
 In gdb: `file jmos.elf` to load symbol table 
