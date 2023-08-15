@@ -20,7 +20,7 @@
 #define USART_TC   ((uint32)(HIGH << 6))
 #define USART_RXNE ((uint32)(HIGH << 5))
 
-void init_usart();
+void init_usart(uint32 brr);
          
 int putchar(unsigned char c);
 

@@ -1,6 +1,6 @@
-#include "jmos-stm32-init.h"
-#include "jmos-stm32-periph.h"
-#include "jmos-stm32-usart.h"
+#include "../hal/jmos-stm32-init.h"
+#include "../hal/jmos-stm32-periph.h"
+#include "../hal/jmos-stm32-usart.h"
 
 void init_led3(){
     // unsigned long int RCC = 0x40021000;
@@ -101,7 +101,7 @@ void printstrlen(char* s, int len){
 int main(){
     init();
     init_led3();
-    init_usart();
+    init_usart(0x1358);
     
     unsigned char c;
     while(1){
