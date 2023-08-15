@@ -1,16 +1,23 @@
 
-SRCS= *.c
-SRCS += *.s
+DIRS = startup hal jmos usr
+
+SRCS = $(foreach subdir, $(DIRS), $(wildcard $(subdir)/*.c))
+SRCS += startup/*.s
+
+INC = hal/*.h
+INC += usr/*.h
+
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
 OBJDUMP=arm-none-eabi-objdump
 SIZE=arm-none-eabi-size
-PROJECT=jmos
+PROJECT=build/jmos
+LINK=startup/jmos-stm32-link.ld
 
 ## General compiler flags ##
-CFLAGS = -Wall -Werror -std=c99 -g -Tjmos-stm32-link.ld
+CFLAGS = -Wall -Werror -std=c99 -g -T$(LINK)
 CFLAGS += -ffunction-sections -fdata-sections 
-CFLAGS += -I.
+CFLAGS += -I$(INC)
 
 ## STM32 required flags ##
 CFLAGS += -mlittle-endian -mcpu=cortex-m0 -march=armv6-m -mthumb
@@ -32,7 +39,7 @@ OBJS = $(SRCS:.c=.o)
 
 all: asm project
 
-%.o : %.c
+build/%.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $^
 
 asm: $(OBJS)

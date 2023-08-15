@@ -1,6 +1,6 @@
 #include "jmos-stm32-usart.h"
 
-void init_usart(){
+void init_usart(uint32 brr){
 	// need to first make sure it's off
 	RCC->APB2ENR &= ~USART_EN;
 
@@ -21,7 +21,8 @@ void init_usart(){
 	RCC->APB2ENR |= USART_EN; 
                                                                                                                                                                                                     
     // --- Configure Baud to 9600 --- //
-    USART1->BRR = 0x1368; // baud = fclk / BRR ::: 0x1388 * 0d9600 = fclk
+    USART1->BRR = brr;
+        // 0x1368; // baud = fclk / BRR ::: 0x1388 * 0d9600 = fclk
  
     // --- Enable basic fns in USART1 register --- //
     uint32 cr1_val = TX_EN | RX_EN | UE_EN;
