@@ -20,11 +20,11 @@ As an end goal, I'm shooting for a number of things:
 
 # Getting Started
 
-### Hardware: \
+### Hardware: 
 STM32F0Discovery board: https://www.digikey.com/en/products/detail/stmicroelectronics/STM32F0DISCOVERY/3045359?utm_adgroup=&utm_source=google&utm_medium=cpc&utm_campaign=PMax%20Shopping_Product_Low%20ROAS%20Categories&utm_term=&utm_content=&gclid=Cj0KCQjwuNemBhCBARIsADp74QTjs18nkKRnToguwQtXIAcssSx9WCRISwkd93s4XSV0hSUSAQyqGiwaAr9YEALw_wcB \
 FDTI serial to USB board: https://www.amazon.com/HiLetgo-FT232RL-Converter-Adapter-Breakout/dp/B00IJXZQ7C/ref=sr_1_8?keywords=ftdi+usb+to+serial&qid=1691784056&sr=8-8
 
-### Documentation: \
+### Documentation: 
 Cortex M0 Programming Manual: https://www.st.com/resource/en/programming_manual/pm0215-stm32f0-series-cortexm0-programming-manual-stmicroelectronics.pdf \
 STM32F0xx Reference Manual: https://www.st.com/resource/en/reference_manual/rm0091-stm32f0x1stm32f0x2stm32f0x8-advanced-armbased-32bit-mcus-stmicroelectronics.pdf \
 STM32F0 Discovery Datasheet: https://www.st.com/resource/en/user_manual/um1525-stm32f0discovery-discovery-kit-for-stm32-f0-microcontrollers-stmicroelectronics.pdf 
@@ -46,7 +46,7 @@ STM32F0 Discovery Datasheet: https://www.st.com/resource/en/user_manual/um1525-s
 4. Flash the jmos.bin image to ROM: \
 `make flash` 
 
-### Debugging: \
+### Debugging: 
 st-link provides a nice utility for connecting to the in-circuit debugger and exposing it as a gdb server that you can connect to with any gdb instance running on the host PC. 
 1. Run the gdb server, connected to the SWD in-circuit debugger on the board: \
 `tmux` (optional) \
@@ -72,7 +72,7 @@ In gdb: `load jmos.elf` to flash binary image and reload symbol table \
 In gdb: `r`, `y` to restart the MCU \
 continue debugging as normal
 
-### USART Serial Monitoring:\
+### USART Serial Monitoring:
 The foundation of the Basic Input/Output System is the USART serial communication peripheral.\
 The code assumes the board and USART pins are wired like this:
 ![image](https://github.com/JMike360/jmos/assets/21974835/04878658-5ed6-46ad-80ce-8e1704725fb1)
