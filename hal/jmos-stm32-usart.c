@@ -46,3 +46,19 @@ unsigned char getchar(){
     uint32 c = USART1->RDR;
     return (unsigned char)c;
 }
+
+void print(const char * str){
+    int i = 0;
+    while(str[i] != '\0'){
+        putchar(str[i]);
+        i++;
+    }
+    finish_tx();
+}
+
+void println(const char * str){
+    print(str);
+    putchar('\n');
+    putchar('\r');
+    finish_tx();
+}
