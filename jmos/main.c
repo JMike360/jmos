@@ -1,6 +1,7 @@
 #include "../hal/jmos-stm32-init.h"
 #include "../hal/jmos-stm32-periph.h"
 #include "../hal/jmos-stm32-usart.h"
+#include "../usr/jmsh.h"
 
 void init_led3(){
     // unsigned long int RCC = 0x40021000;
@@ -103,38 +104,9 @@ int main(){
     init_led3();
     init_usart(0x1358);
     
-    unsigned char c;
-    while(1){
-        set_led3_on();
-        c = getchar();
-        if(c == '\r'){
-            putchar('\n');
-            putchar(c);
-        }
-        else if(c == 127){
-            putchar('\b');
-            putchar(' ');
-            putchar('\b');
-        }
-        else{
-            putchar(c);
-        }
-
-        set_led3_off();
-        c = getchar();
-        if(c == '\r'){
-            putchar('\n');
-            putchar(c);
-        }
-        else if(c == 127){
-            putchar('\b');
-            putchar(' ');
-            putchar('\b');
-        }
-        else{
-            putchar(c);
-        }
-    }
-
+    set_led3_on();
+    run();
+    
+    while(1);
     return 0;
 }
