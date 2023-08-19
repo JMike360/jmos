@@ -8,13 +8,15 @@ extern unsigned char _sheap;
 extern uint32 _eheap;
 // -------------------------- //
 
-#define TBL_SIZE 128
+#define TBL_SIZE 256 
 #define ENT_SIZE (udiv(HEAP_SIZE, TBL_SIZE))
 
 static uint16 memtable[TBL_SIZE];
 
 void* allocate_blocks(int startIdx, unsigned int size){
-    unsigned char * heap_ptr = &_sheap; // Addr is stored in the symbol table as the *addr* of the linker script var _sheap
+    // Start of heap is stored in the symbol table as the *addr* of the linker script var _sheap
+    unsigned char * heap_ptr = &_sheap; 
+    
     unsigned char * alloc_start = heap_ptr + (startIdx * ENT_SIZE);
 
     for(int i = 0; i < size; i++){
@@ -25,6 +27,11 @@ void* allocate_blocks(int startIdx, unsigned int size){
 }
 
 void mark_memtable(int startIdx, unsigned int numblocks, unsigned int size){
+    // Basically the idea is we mark the memory table, which is a condensed representation of the actual heap,
+    // with some info about used memory
+    // The scheme I decided to use is to mark the first entry in a sequence of blocks (the one the alloc ptr refers to)
+    // with the size of the alloc. From there, we can deduce based on that size how many blocks to free.
+    // Everything after the first entry just needs to be non-zero, so I mark them as ~0, or 0xFFFF.
     memtable[startIdx] = size;
     for(int i = 1; i < numblocks; i++){
         memtable[startIdx + i] = ~0;
@@ -44,7 +51,9 @@ void* jmalloc(unsigned int size){
         return NULL;
     }
 
-    for(int i = 0; (i < TBL_SIZE) && (i < TBL_SIZE - numblocks); i++){
+    // This is essentially a "given an array of ints, find a sequence of 0s in the array that is at least 'size' long"
+    // type of problem. Very leetcode. Much wow.
+    for(int i = 0; i < TBL_SIZE - numblocks; i++){
         int j = i;
         while(memtable[j] == 0){
             if((j-i) == numblocks-1){
@@ -72,12 +81,12 @@ void free(void * ptr){
         numblocks++;
     }
 
-    for(int i = 0; i < numblocks; i++){
+    for(int i = startIdx; i < startIdx + numblocks; i++){
         memtable[i] = 0;
     }
 }
 
-// If heap size is 0x400 (1024, or 128 words), a 32-bit word can store free/used flags for 32 blocks of 32 bytes = 8 words
+// If heap size is 0x400 (1024, or 256 words), a 32-bit word can store free/used flags for 32 blocks of 32 bytes = 8 words
 // One option is to put a fixed size table at _sheap to track usage of blocks
 //  -- problem is that alloc's beyond single-block size have to be tracked somehow.. ids? kinda slow to do alloc and free
 // Other option is to allocate as blocks with headers, not great for small alloc's
