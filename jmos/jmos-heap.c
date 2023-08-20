@@ -9,7 +9,7 @@ extern uint32 _eheap;
 // -------------------------- //
 
 #define TBL_SIZE 256 
-#define ENT_SIZE (udiv(HEAP_SIZE, TBL_SIZE))
+#define ENT_SIZE (udiv((uint32)&HEAP_SIZE, TBL_SIZE))
 
 static uint16 memtable[TBL_SIZE];
 
@@ -70,6 +70,10 @@ void* jmalloc(unsigned int size){
 }
 
 void free(void * ptr){
+    if(ptr == NULL){
+        return;
+    }
+
     unsigned char * heap_ptr = &_sheap;
     uint32 blocksize = ptr - (void*)heap_ptr;
     int startIdx = udiv(blocksize, ENT_SIZE); // this should divide perfectly, if not, we done fmessed up
