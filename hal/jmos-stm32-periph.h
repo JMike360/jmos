@@ -7,6 +7,7 @@
 
 typedef unsigned long int uint32;
 typedef volatile uint32 reg_t;
+typedef unsigned short int uint16;
 
 typedef struct rcc_t {
     reg_t CR;        // 0x00
