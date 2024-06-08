@@ -1,5 +1,6 @@
 #include "jmsh.h"
 #include "../hal/jmos-stm32-usart.h"
+#include "../jmos/jmos-heap.h"
 
 #define CMD_SIZE 200
 char cmd[CMD_SIZE];
@@ -55,6 +56,8 @@ int run(void){
    
     while(1){
         getcmd();
+        void* ptr = jmalloc(1);
+        free(ptr);
         println(cmd);
     }
 
